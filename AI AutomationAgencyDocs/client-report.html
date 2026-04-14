@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Automation Report — Santorini Breeze Hotel</title>
+<style>
+/* ── RESET & BASE ── */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Arial,sans-serif;color:#1a1a2e;background:#fff;font-size:15px;line-height:1.7;}
+
+/* ── COVER ── */
+.cover{
+  min-height:100vh;
+  background:linear-gradient(145deg,#0a2342 0%,#0f3460 45%,#1a4a7a 100%);
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:70px 80px;page-break-after:always;position:relative;overflow:hidden;
+}
+.cover-circle1{position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:rgba(229,160,50,0.07);}
+.cover-circle2{position:absolute;bottom:-150px;left:-100px;width:450px;height:450px;border-radius:50%;background:rgba(255,255,255,0.03);}
+.cover-circle3{position:absolute;top:50%;right:10%;width:200px;height:200px;border-radius:50%;background:rgba(229,160,50,0.04);}
+.cover-agency{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#e5a032;}
+.cover-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(229,160,50,0.15);border:1px solid rgba(229,160,50,0.3);border-radius:20px;padding:6px 16px;margin-bottom:28px;}
+.cover-badge span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#e5a032;}
+.cover-main{flex:1;display:flex;flex-direction:column;justify-content:center;padding:50px 0;}
+.cover-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:18px;}
+.cover-title{font-size:52px;font-weight:300;color:#fff;line-height:1.1;margin-bottom:8px;}
+.cover-title strong{font-weight:700;color:#e5a032;}
+.cover-sub{font-size:17px;color:rgba(255,255,255,0.5);font-style:italic;margin-top:14px;}
+.cover-line{width:70px;height:3px;background:linear-gradient(90deg,#e5a032,transparent);margin:36px 0;}
+.cover-chips{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px;}
+.chip{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:6px;padding:8px 16px;color:rgba(255,255,255,0.7);font-size:12px;}
+.chip strong{color:#fff;display:block;font-size:13px;}
+.cover-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:580px;}
+.cover-stat{border-left:3px solid #e5a032;padding-left:16px;}
+.cover-stat .num{font-size:30px;font-weight:700;color:#e5a032;}
+.cover-stat .lbl{font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:1px;text-transform:uppercase;}
+.cover-footer{display:flex;justify-content:space-between;align-items:center;}
+.cover-footer span{font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:1px;}
+
+/* ── PAGES ── */
+.page{max-width:900px;margin:0 auto;padding:70px 80px;page-break-after:always;}
+.page:last-child{page-break-after:auto;}
+.ph{display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;margin-bottom:44px;border-bottom:1px solid #eee;}
+.ph-doc{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#bbb;}
+.ph-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#e5a032;font-weight:700;}
+.sec-num{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#e5a032;margin-bottom:6px;}
+h1{font-size:34px;font-weight:300;color:#0f3460;line-height:1.15;margin-bottom:10px;}
+h1 strong{font-weight:700;}
+.h1-rule{width:50px;height:3px;background:#e5a032;margin-bottom:36px;}
+h2{font-size:19px;font-weight:700;color:#0f3460;margin:44px 0 16px;}
+h3{font-size:15px;font-weight:700;color:#1a1a2e;margin:24px 0 8px;}
+p{color:#444;margin-bottom:16px;line-height:1.75;}
+
+/* ── CALLOUT BOXES ── */
+.callout{border-radius:14px;padding:36px 40px;margin:32px 0;}
+.callout-dark{background:linear-gradient(135deg,#0a2342,#0f3460);}
+.callout-gold{background:linear-gradient(135deg,#7a4800,#c07800);color:white;}
+.callout-light{background:#f4f7ff;border:1px solid #e0e8ff;}
+.callout-dark .cl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#e5a032;margin-bottom:14px;}
+.callout-dark .big{font-size:56px;font-weight:700;color:#e5a032;line-height:1;}
+.callout-dark .bigsub{color:rgba(255,255,255,0.6);font-size:15px;margin-top:8px;}
+.callout-dark .bigdesc{color:rgba(255,255,255,0.4);font-size:12px;margin-top:6px;font-style:italic;}
+
+/* ── KPI ROW ── */
+.kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:28px 0;}
+.kpi{background:#f8f9ff;border-radius:12px;padding:24px;border-top:4px solid #0f3460;text-align:center;}
+.kpi.warn{border-top-color:#c0392b;background:#fff8f8;}
+.kpi.ok{border-top-color:#27ae60;background:#f4fef7;}
+.kpi .kn{font-size:32px;font-weight:700;color:#0f3460;}
+.kpi.warn .kn{color:#c0392b;}
+.kpi.ok .kn{color:#27ae60;}
+.kpi .kl{font-size:12px;color:#888;margin-top:6px;line-height:1.4;}
+
+/* ── ROI BAR CHART (SVG-free, CSS) ── */
+.bar-chart{margin:28px 0;}
+.bar-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+.bar-label{width:190px;font-size:13px;color:#444;flex-shrink:0;}
+.bar-track{flex:1;background:#f0f0f0;border-radius:6px;height:32px;position:relative;overflow:visible;}
+.bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:12px;color:white;font-size:12px;font-weight:600;min-width:20px;transition:width 0.3s;}
+.bar-val{margin-left:10px;font-size:13px;font-weight:700;color:#0f3460;white-space:nowrap;}
+.bar-total{display:flex;align-items:center;gap:14px;margin-top:6px;padding-top:14px;border-top:2px solid #0f3460;}
+.bar-total .bar-label{font-weight:700;color:#0f3460;}
+.bar-total .bar-val{font-size:16px;color:#0f3460;}
+
+/* ── PAIN CARDS ── */
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:24px 0;}
+.pain-card{border-radius:10px;padding:22px 24px;border-left:5px solid;}
+.pain-card.red{border-color:#c0392b;background:#fff8f8;}
+.pain-card.amber{border-color:#e5a032;background:#fffbf3;}
+.pain-card .icon{font-size:24px;margin-bottom:10px;}
+.pain-card strong{display:block;font-size:14px;color:#1a1a2e;margin-bottom:6px;}
+.pain-card span{font-size:13px;color:#666;}
+.pain-card .stat{font-size:22px;font-weight:700;margin-bottom:4px;}
+.pain-card.red .stat{color:#c0392b;}
+.pain-card.amber .stat{color:#c07800;}
+
+/* ── PROCESS FLOW ── */
+.flow{margin:36px 0;}
+.flow-item{display:flex;align-items:flex-start;gap:0;margin-bottom:0;}
+.flow-left{display:flex;flex-direction:column;align-items:center;width:52px;flex-shrink:0;}
+.flow-dot{width:44px;height:44px;border-radius:50%;background:#0f3460;color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;z-index:1;flex-shrink:0;}
+.flow-dot.gold{background:#e5a032;}
+.flow-line{width:2px;flex:1;background:#dde5f5;min-height:24px;}
+.flow-content{padding:4px 0 32px 20px;flex:1;}
+.flow-content strong{font-size:15px;color:#0f3460;display:block;margin-bottom:6px;}
+.flow-content p{font-size:13.5px;color:#555;margin-bottom:8px;}
+.flow-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.ftag{font-size:11px;font-weight:700;letter-spacing:1px;padding:3px 10px;border-radius:20px;}
+.ftag-green{background:#e4f8ec;color:#1a7a40;}
+.ftag-blue{background:#e8ecf8;color:#0f3460;}
+.ftag-amber{background:#fff4e0;color:#8a5c00;}
+
+/* ── STACK TABLE ── */
+.tbl{width:100%;border-collapse:collapse;margin:24px 0;border-radius:10px;overflow:hidden;box-shadow:0 1px 8px rgba(0,0,0,0.06);}
+.tbl thead tr{background:#0f3460;}
+.tbl th{padding:14px 18px;text-align:left;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.8);font-weight:600;}
+.tbl td{padding:14px 18px;font-size:13.5px;color:#333;border-bottom:1px solid #f0f0f0;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:nth-child(even) td{background:#fafbff;}
+.tbl .total td{background:#f0f4ff;font-weight:700;color:#0f3460;}
+.badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:4px;}
+.b-keep{background:#e4f8ec;color:#1a7a40;}
+.b-replace{background:#fde8e8;color:#c0392b;}
+.b-new{background:#fff4e0;color:#8a5c00;}
+.b-rec{background:#e8ecf8;color:#0f3460;}
+
+/* ── QUOTE ── */
+.quote{border-left:4px solid #e5a032;padding:18px 24px;margin:24px 0;background:#fffbf3;border-radius:0 10px 10px 0;}
+.quote p{font-style:italic;color:#444;margin:0;font-size:14px;line-height:1.7;}
+.quote cite{display:block;font-style:normal;font-size:11px;color:#999;margin-top:10px;letter-spacing:1px;}
+
+/* ── BEFORE / AFTER ── */
+.before-after{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:32px 0;border-radius:14px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,0.08);}
+.before{background:#fff2f2;padding:28px 30px;}
+.after{background:#f0fdf4;padding:28px 30px;}
+.ba-head{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:16px;}
+.before .ba-head{color:#c0392b;}
+.after .ba-head{color:#27ae60;}
+.ba-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;font-size:13.5px;}
+.ba-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+
+/* ── SUCCESS GRID ── */
+.success-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0;}
+.success-item{display:flex;align-items:flex-start;gap:12px;background:#f4fef7;border:1px solid #c6f0d4;border-radius:10px;padding:16px 18px;}
+.success-check{color:#27ae60;font-size:20px;flex-shrink:0;}
+.success-text{font-size:13.5px;color:#2a4a32;}
+
+/* ── NEEDS LIST ── */
+.needs-list{list-style:none;margin:20px 0;}
+.needs-list li{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid #f5f5f5;}
+.needs-list li:last-child{border-bottom:none;}
+.needs-num{width:28px;height:28px;border-radius:50%;border:2px solid #0f3460;color:#0f3460;font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.needs-list li span{font-size:14px;color:#333;}
+
+/* ── NEXT AUTOMATION CARDS ── */
+.next-card{border-radius:12px;overflow:hidden;margin-bottom:22px;box-shadow:0 2px 12px rgba(0,0,0,0.07);}
+.next-card-head{padding:22px 26px;display:flex;justify-content:space-between;align-items:center;}
+.next-card-head.low{background:linear-gradient(135deg,#1a5c35,#27ae60);}
+.next-card-head.medium{background:linear-gradient(135deg,#7a4800,#e5a032);}
+.next-card-head.high{background:linear-gradient(135deg,#0a2342,#0f3460);}
+.next-card-head .title{font-size:17px;font-weight:700;color:white;}
+.next-card-head .phase{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6);}
+.next-card-body{background:white;padding:22px 26px;border:1px solid #f0f0f0;border-top:none;border-radius:0 0 12px 12px;}
+.next-card-body p{font-size:13.5px;color:#555;margin-bottom:12px;}
+.next-meta{display:flex;gap:20px;margin-top:12px;padding-top:14px;border-top:1px solid #f5f5f5;}
+.next-meta-item{text-align:center;}
+.next-meta-item .nm{font-size:11px;color:#aaa;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+.next-meta-item .nv{font-size:14px;font-weight:700;color:#0f3460;}
+
+/* ── TIMELINE ── */
+.timeline{margin:32px 0;}
+.tl-item{display:flex;gap:20px;margin-bottom:0;}
+.tl-left{display:flex;flex-direction:column;align-items:center;width:120px;flex-shrink:0;}
+.tl-phase{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#e5a032;font-weight:700;text-align:center;margin-bottom:8px;}
+.tl-dot{width:14px;height:14px;border-radius:50%;background:#0f3460;flex-shrink:0;}
+.tl-dot.current{background:#e5a032;width:18px;height:18px;}
+.tl-vline{width:2px;flex:1;background:#dde5f5;min-height:40px;}
+.tl-content{padding-bottom:32px;flex:1;}
+.tl-content strong{font-size:15px;color:#0f3460;display:block;margin-bottom:4px;}
+.tl-content p{font-size:13px;color:#666;margin:0;}
+
+/* ── ROI DONUT (pure CSS) ── */
+.donut-wrap{display:flex;align-items:center;gap:40px;margin:28px 0;}
+.donut{width:160px;height:160px;border-radius:50%;background:conic-gradient(#0f3460 0% 55%,#e5a032 55% 93%,#c0392b 93% 100%);position:relative;flex-shrink:0;}
+.donut::after{content:'';position:absolute;top:25%;left:25%;width:50%;height:50%;background:white;border-radius:50%;}
+.donut-legend{flex:1;}
+.dleg{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.dleg-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0;}
+.dleg span{font-size:13px;color:#444;}
+.dleg strong{font-size:14px;color:#1a1a2e;}
+
+/* ── ERROR HANDLING TABLE ── */
+.err-grid{display:grid;grid-template-columns:1fr;gap:10px;margin:20px 0;}
+.err-row{display:flex;align-items:flex-start;gap:14px;background:#fffbfb;border:1px solid #fde8e8;border-radius:8px;padding:14px 16px;}
+.err-icon{color:#c0392b;font-size:18px;flex-shrink:0;}
+.err-content strong{font-size:13.5px;color:#1a1a2e;display:block;margin-bottom:3px;}
+.err-content span{font-size:12.5px;color:#666;}
+.err-arrow{color:#27ae60;margin:0 4px;}
+
+/* ── INVESTMENT VISUAL ── */
+.invest-compare{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:28px 0;}
+.invest-side{border-radius:12px;padding:28px;text-align:center;}
+.invest-side.cost{background:#f4f7ff;border:2px solid #dde5f5;}
+.invest-side.save{background:linear-gradient(135deg,#0a2342,#0f3460);}
+.invest-side .i-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
+.invest-side.cost .i-label{color:#888;}
+.invest-side.save .i-label{color:#e5a032;}
+.invest-side .i-num{font-size:44px;font-weight:700;line-height:1;}
+.invest-side.cost .i-num{color:#0f3460;}
+.invest-side.save .i-num{color:#e5a032;}
+.invest-side .i-sub{font-size:13px;margin-top:8px;}
+.invest-side.cost .i-sub{color:#888;}
+.invest-side.save .i-sub{color:rgba(255,255,255,0.5);}
+.invest-x{display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;color:#27ae60;margin:0 -10px;z-index:1;align-self:center;}
+
+/* ── FOOTER ── */
+.page-footer{display:flex;justify-content:space-between;padding-top:28px;margin-top:48px;border-top:1px solid #eee;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#bbb;}
+
+@media print{
+  body{font-size:13px;}
+  .cover{min-height:100vh;}
+  .page{padding:56px 64px;}
+  h1{font-size:28px;}
+  .callout-dark .big{font-size:44px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════ COVER ══ -->
+<div class="cover">
+  <div class="cover-circle1"></div>
+  <div class="cover-circle2"></div>
+  <div class="cover-circle3"></div>
+
+  <div class="cover-agency">AI Automation Agency</div>
+
+  <div class="cover-main">
+    <div class="cover-badge">
+      <span>Automation Engagement Report</span>
+    </div>
+    <div class="cover-label">Full Findings · Diagnosis · Recommended Solution</div>
+    <div class="cover-title">Hotel Booking<br/><strong>Communication Flow</strong></div>
+    <div class="cover-sub">Santorini Breeze Hotel — April 2026</div>
+    <div class="cover-line"></div>
+
+    <div class="cover-chips">
+      <div class="chip"><strong>Nikos Papadopoulos</strong>Client</div>
+      <div class="chip"><strong>Santorini, Greece</strong>Location</div>
+      <div class="chip"><strong>45 Rooms</strong>Property Size</div>
+      <div class="chip"><strong>Make.com + Cloudbeds</strong>Recommended Stack</div>
+    </div>
+
+    <div class="cover-stat-row">
+      <div class="cover-stat">
+        <div class="num">€5,900</div>
+        <div class="lbl">Annual Cost Found</div>
+      </div>
+      <div class="cover-stat">
+        <div class="num">3–4×</div>
+        <div class="lbl">Missed Emails / Week</div>
+      </div>
+      <div class="cover-stat">
+        <div class="num">€16/mo</div>
+        <div class="lbl">Solution Cost</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <span>Confidential · AI Automation Agency · 2026</span>
+    <span>Prepared for Santorini Breeze Hotel</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════ PAGE 1 — EXECUTIVE SUMMARY ══ -->
+<div class="page">
+  <div class="ph">
+    <span class="ph-doc">Santorini Breeze Hotel — Automation Report</span>
+    <span class="ph-tag">Executive Summary</span>
+  </div>
+
+  <div class="sec-num">01 — Overview</div>
+  <h1>What We <strong>Found</strong> &amp; What We <strong>Recommend</strong></h1>
+  <div class="h1-rule"></div>
+
+  <p>We ran a structured diagnostic interview with Nikos Papadopoulos, owner of Santorini Breeze Hotel. Our job was not to accept the stated problem at face value, but to find the real root cause — where time, money, and quality are actually being lost in the operation.</p>
+
+  <p>What we found: a fully manual guest communication workflow with zero automation at any step. Every confirmation email, pre-arrival message, and invoice is typed and sent by hand — across three staff members — during the hotel's most critical period.</p>
+
+  <div class="callout callout-dark">
+    <div class="cl">Annual Cost of the Problem</div>
+    <div class="big">€5,900</div>
+    <div class="bigsub">per year in direct staff time alone</div>
+    <div class="bigdesc">Before counting invoice disputes, guest experience failures, and emergency calls in peak season</div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi warn">
+      <div class="kn">3–4×</div>
+      <div class="kl">Missed pre-arrival emails per week in August — every one triggers an emergency call</div>
+    </div>
+    <div class="kpi warn">
+      <div class="kn">63</div>
+      <div class="kl">Bookings per week at peak — all handled manually by 3 staff members</div>
+    </div>
+    <div class="kpi warn">
+      <div class="kn">0</div>
+      <div class="kl">Prior automation attempts — this is a completely untouched process</div>
+    </div>
+  </div>
+
+  <h2>Our Recommendation</h2>
+  <p>A <strong>trigger-based automation on Make.com</strong> connected to Cloudbeds and Gmail that handles every routine guest touchpoint automatically — from the moment a booking is confirmed to the PDF invoice on checkout day. Cost: <strong>~€16/month</strong>. Return: <strong>~€5,900/year</strong>.</p>
+
+  <div class="page-footer">
+    <span>AI Automation Agency · Confidential</span>
+    <span>Santorini Breeze Hotel · April 2026</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════ PAGE 2 — DIAGNOSIS ══ -->
+<div class="page">
+  <div class="ph">
+    <span class="ph-doc">Santorini Breeze Hotel — Automation Report</span>
+    <span class="ph-tag">Phase 1 — Diagnosis</span>
+  </div>
+
+  <div class="sec-num">02 — The Diagnostic Interview</div>
+  <h1>What We <strong>Asked.</strong> What We <strong>Discovered.</strong></h1>
+  <div class="h1-rule"></div>
+
+  <p>We conducted a four-round structured interview. We never accepted the first answer. Our goal was to surface the real cost — not just the surface complaint.</p>
+
+  <div class="quote">
+    <p>"Booking comes in on Booking.com. Maria sees it in the morning when she checks. She copies the guest name into Excel, opens Gmail, types the confirmation from a Word template. Then 3 days before arrival she must remember the pre-arrival email. Then after checkout she makes the invoice in another Excel file. Sometimes she forgets the pre-arrival. Sometimes the invoice has wrong dates."</p>
+    <cite>— Nikos Papadopoulos, Santorini Breeze Hotel · Round 1 of the diagnostic interview</cite>
+  </div>
+
+  <h2>What the Process Actually Looks Like Today</h2>
+
+  <div class="before-after">
+    <div class="before">
+      <div class="ba-head">⚠ Today — Manual &amp; Error-Prone</div>
+      <div class="ba-item"><span class="ba-icon">⏰</span><span>Maria checks Booking.com <strong>manually every morning</strong> — overnight bookings not seen until next day</span></div>
+      <div class="ba-item"><span class="ba-icon">📋</span><span>Copy-paste from Cloudbeds → Excel → Word template → Gmail</span></div>
+      <div class="ba-item"><span class="ba-icon">🧠</span><span>Pre-arrival email relies entirely on <strong>Maria's memory</strong> — no scheduling exists</span></div>
+      <div class="ba-item"><span class="ba-icon">📊</span><span>Invoice built manually in a separate Excel file — wrong VAT and wrong dates are recurring</span></div>
+      <div class="ba-item"><span class="ba-icon">📞</span><span>3–4 guests per week in August call the hotel lost — interrupting staff at peak hours</span></div>
+    </div>
+    <div class="after">
+      <div class="ba-head">✓ After Automation — Instant &amp; Accurate</div>
+      <div class="ba-item"><span class="ba-icon">⚡</span><span>Cloudbeds fires a <strong>real-time signal</strong> the moment any booking is confirmed on any channel</span></div>
+      <div class="ba-item"><span class="ba-icon">✉</span><span>Confirmation email sent to guest <strong>within minutes</strong> — personalised, branded, accurate</span></div>
+      <div class="ba-item"><span class="ba-icon">📅</span><span>Pre-arrival email <strong>scheduled automatically</strong> to D-3 at 09:00 — no one has to remember</span></div>
+      <div class="ba-item"><span class="ba-icon">📄</span><span>Correct PDF invoice generated on checkout day — right VAT, right dates, every time</span></div>
+      <div class="ba-item"><span class="ba-icon">🤫</span><span>Maria's communication workload in peak season <strong>reduced by ~80%</strong></span></div>
+    </div>
+  </div>
+
+  <h2>The Pain Points — Quantified</h2>
+
+  <div class="pain-grid">
+    <div class="pain-card red">
+      <div class="stat">3–4×</div>
+      <strong>Missed pre-arrival emails per week (Aug)</strong>
+      <span>Each one becomes an emergency call. Maria stops what she's doing — during check-in hours — to give directions by phone.</span>
+    </div>
+    <div class="pain-card red">
+      <div class="stat">1 dispute</div>
+      <strong>Corporate client invoice dispute (confirmed)</strong>
+      <span>Wrong VAT, wrong dates — not an isolated incident. A formal dispute with a corporate client was the result.</span>
+    </div>
+    <div class="pain-card amber">
+      <div class="stat">15 min</div>
+      <strong>Staff time per booking, all manual</strong>
+      <span>Confirmation + pre-arrival scheduling + invoice across 3 people in peak season. Multiplied by 63 bookings/week.</span>
+    </div>
+    <div class="pain-card amber">
+      <div class="stat">30%</div>
+      <strong>Direct bookings with zero auto-acknowledgement</strong>
+      <span>Website contact form submissions get no auto-reply. Potential guests wait with no confirmation their inquiry was received.</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>AI Automation Agency · Confidential</span>
+    <span>Santorini Breeze Hotel · April 2026</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════ PAGE 3 — ROI ══ -->
+<div class="page">
+  <div class="ph">
+    <span class="ph-doc">Santorini Breeze Hotel — Automation Report</span>
+    <span class="ph-tag">Cost Analysis</span>
+  </div>
+
+  <div class="sec-num">03 — The Numbers</div>
+  <h1>The <strong>Real Cost</strong> of Doing Nothing</h1>
+  <div class="h1-rule"></div>
+
+  <p>We asked Nikos for staff hourly rates and booking volumes. From those numbers, we calculated the true annual cost of the current manual process.</p>
+
+  <h2>Annual Staff Time Cost — Breakdown</h2>
+
+  <div class="bar-chart">
+    <div class="bar-row">
+      <div class="bar-label">Peak season comms<br/><span style="font-size:11px;color:#aaa">Jun–Sep · 3 staff · 17 wks</span></div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:55%;background:linear-gradient(90deg,#0f3460,#1a4a7a);">€3,264</div>
+      </div>
+      <div class="bar-val">€3,264</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Off-peak comms<br/><span style="font-size:11px;color:#aaa">Oct–May · Maria only · 35 wks</span></div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:37%;background:linear-gradient(90deg,#1a4a7a,#2860a0);">€2,205</div>
+      </div>
+      <div class="bar-val">€2,205</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Error rework<br/><span style="font-size:11px;color:#aaa">Calls + invoice corrections</span></div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:8%;background:linear-gradient(90deg,#c0392b,#e74c3c);">&nbsp;</div>
+      </div>
+      <div class="bar-val">€400+</div>
+    </div>
+    <div class="bar-total">
+      <div class="bar-label">Total Annual Cost</div>
+      <div style="flex:1;"></div>
+      <div class="bar-val" style="font-size:22px;">~€5,900 / year</div>
+    </div>
+  </div>
+
+  <h2>Cost Breakdown &amp; Distribution</h2>
+
+  <div class="donut-wrap">
+    <div class="donut"></div>
+    <div class="donut-legend">
+      <div class="dleg">
+        <div class="dleg-dot" style="background:#0f3460;"></div>
+        <div><div class="dleg">​<strong>€3,264</strong></div><span style="font-size:12px;color:#888;">Peak season (Jun–Sep) — 55% of total</span></div>
+      </div>
+      <div class="dleg">
+        <div class="dleg-dot" style="background:#e5a032;"></div>
+        <div><div class="dleg">​<strong>€2,205</strong></div><span style="font-size:12px;color:#888;">Off-peak (Oct–May) — 38% of total</span></div>
+      </div>
+      <div class="dleg">
+        <div class="dleg-dot" style="background:#c0392b;"></div>
+        <div><div class="dleg">​<strong>€400+</strong></div><span style="font-size:12px;color:#888;">Error rework &amp; disputes — 7% of total</span></div>
+      </div>
+      <div style="margin-top:16px;padding-top:14px;border-top:1px solid #eee;">
+        <span style="font-size:11px;color:#aaa;">Assumptions: 15 min/booking avg · €12/hr blended peak · €14/hr Maria off-peak · 3 calls/week peak × 20 min · does not include client relationship cost or lost future bookings.</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>Return on Investment</h2>
+
+  <div class="invest-compare">
+    <div class="invest-side cost">
+      <div class="i-label">Solution Cost (Annual)</div>
+      <div class="i-num">€192</div>
+      <div class="i-sub">Make.com Core plan · €16/month</div>
+    </div>
+    <div class="invest-x">30×</div>
+    <div class="invest-side save">
+      <div class="i-label">Annual Savings</div>
+      <div class="i-num">€5,900</div>
+      <div class="i-sub">Recovered in staff time alone</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>AI Automation Agency · Confidential</span>
+    <span>Santorini Breeze Hotel · April 2026</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════ PAGE 4 — DISCOVERY ══ -->
+<div class="page">
+  <div class="ph">
+    <span class="ph-doc">Santorini Breeze Hotel — Automation Report</span>
+    <span class="ph-tag">Phase 2 — Discovery</span>
+  </div>
+
+  <div class="sec-num">04 — Operational Context</div>
+  <h1>Your <strong>Operation.</strong> Fully <strong>Mapped.</strong></h1>
+  <div class="h1-rule"></div>
+
+  <p>Before designing anything, we mapped every trigger, data source, tool, and person involved in this process. No assumptions. No guessing.</p>
+
+  <h2>Your Current Technology Stack</h2>
+
+  <table class="tbl">
+    <thead><tr><th>Tool</th><th>Current Purpose</th><th>Volume / Notes</th><th>After Automation</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Cloudbeds</strong></td>
+        <td>PMS + channel manager — connects Booking.com, Airbnb, website widget</td>
+        <td>Source of all reservation data</td>
+        <td><span class="badge b-keep">Keep · New Webhook</span></td>
+      </tr>
+      <tr>
+        <td><strong>Gmail</strong></td>
+        <td>All outbound guest communication</td>
+        <td>All 3 email types sent from here</td>
+        <td><span class="badge b-keep">Keep · Auto-connected</span></td>
+      </tr>
+      <tr>
+        <td><strong>WordPress + CF7</strong></td>
+        <td>Direct booking inquiry form</td>
+        <td>~30% of all bookings originate here</td>
+        <td><span class="badge b-keep">Keep · Webhook added</span></td>
+      </tr>
+      <tr>
+        <td><strong>Excel (invoicing)</strong></td>
+        <td>Manual invoice creation — error-prone</td>
+        <td>Wrong VAT &amp; dates are recurring issues</td>
+        <td><span class="badge b-replace">Replace</span></td>
+      </tr>
+      <tr>
+        <td><strong>Make.com</strong></td>
+        <td>— (not in use today)</td>
+        <td>New · connects all tools above</td>
+        <td><span class="badge b-new">New · Recommended</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Booking Volumes</h2>
+
+  <table class="tbl">
+    <thead><tr><th>Period</th><th>Daily Avg</th><th>Weekly Avg</th><th>Duration</th><th>Staff Involved</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Peak season</strong> (Jun–Sep)</td>
+        <td>~9 / day</td>
+        <td>~63 / week</td>
+        <td>17 weeks</td>
+        <td>Maria + 2 staff</td>
+      </tr>
+      <tr>
+        <td><strong>Off-peak</strong> (Oct–May)</td>
+        <td>~2.5 / day</td>
+        <td>~18 / week</td>
+        <td>35 weeks</td>
+        <td>Maria only</td>
+      </tr>
+      <tr>
+        <td><strong>Direct (Contact Form 7)</strong></td>
+        <td colspan="4">~30% of total across all periods — currently unautomated, no auto-reply to potential guests</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>People Involved</h2>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kn" style="font-size:22px;">Maria</div>
+      <div class="kl">Senior receptionist · €14/hr · Owns the entire comms process · Primary alert recipient post-launch</div>
+    </div>
+    <div class="kpi">
+      <div class="kn" style="font-size:22px;">2 Staff</div>
+      <div class="kl">Peak season only · €11/hr each · Assist Maria with manual sends · Role in comms eliminated post-automation</div>
+    </div>
+    <div class="kpi">
+      <div class="kn" style="font-size:22px;">Nikos</div>
+      <div class="kl">Owner · Escalation point · System access approvals · Receives error alerts alongside Maria</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>AI Automation Agency · Confidential</span>
+    <span>Santorini Breeze Hotel · April 2026</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════ PAGE 5 — SOLUTION FLOW ══ -->
+<div class="page">
+  <div class="ph">
+    <span class="ph-doc">Santorini Breeze Hotel — Automation Report</span>
+    <span class="ph-tag">Phase 3 — The Solution</span>
+  </div>
+
+  <div class="sec-num">05 — What We're Building</div>
+  <h1>The Automation, <strong>Step by Step</strong></h1>
+  <div class="h1-rule"></div>
+
+  <p>Every guest communication from booking to checkout, handled automatically. Your team does nothing for any of these to happen.</p>
+
+  <div class="flow">
+
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot gold">⚡</div>
+        <div class="flow-line"></div>
+      </div>
+      <div class="flow-content">
+        <strong>Trigger — New Booking in Cloudbeds</strong>
+        <p>A webhook fires the moment a reservation is confirmed on any channel — Booking.com, Airbnb, or your website widget. Make.com receives the full reservation data and validates it immediately. If anything is missing (e.g. no guest email), Maria is alerted instantly with the booking ID.</p>
+        <div class="flow-tags">
+          <span class="ftag ftag-amber">Real-time trigger</span>
+          <span class="ftag ftag-blue">Cloudbeds webhook</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot">1</div>
+        <div class="flow-line"></div>
+      </div>
+      <div class="flow-content">
+        <strong>Confirmation Email Sent</strong>
+        <p>Within minutes of the booking, the guest receives a personalised confirmation from your hotel's Gmail — their name, room type, check-in/out dates, rate, breakfast inclusion, cancellation policy, and your direct contact details. Branded. Accurate. Zero typing by Maria.</p>
+        <div class="flow-tags">
+          <span class="ftag ftag-green">Sent instantly</span>
+          <span class="ftag ftag-blue">Via Gmail</span>
+          <span class="ftag ftag-blue">Personalised template</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot">2</div>
+        <div class="flow-line"></div>
+      </div>
+      <div class="flow-content">
+        <strong>Pre-Arrival Email — Scheduled Automatically</strong>
+        <p>The automation calculates exactly 3 days before check-in and schedules the pre-arrival email to fire at 09:00 Europe/Athens. For last-minute bookings (check-in within 3 days), it sends immediately. No one on your team has to remember, set a reminder, or calendar anything.</p>
+        <div class="flow-tags">
+          <span class="ftag ftag-amber">Scheduled · D-3 at 09:00</span>
+          <span class="ftag ftag-green">Instant for late bookings</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot">3</div>
+        <div class="flow-line"></div>
+      </div>
+      <div class="flow-content">
+        <strong>Pre-Arrival Email Delivered</strong>
+        <p>The guest receives: directions from Santorini port and airport, parking information, check-in time (15:00), WiFi name and password, breakfast time and location, and an emergency contact number. Everything they need, before they need it. Zero missed sends.</p>
+        <div class="flow-tags">
+          <span class="ftag ftag-green">Automatic</span>
+          <span class="ftag ftag-blue">Zero missed sends</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot">4</div>
+        <div class="flow-line"></div>
+      </div>
+      <div class="flow-content">
+        <strong>PDF Invoice Generated &amp; Emailed on Checkout</strong>
+        <p>On checkout day at 11:00, the automation pulls the final reservation data from Cloudbeds, generates a correctly calculated PDF invoice — hotel logo, 13% VAT, correct dates, correct totals — and emails it to the guest. For corporate clients, the invoice is produced in both English and Greek.</p>
+        <div class="flow-tags">
+          <span class="ftag ftag-amber">Checkout day · 11:00</span>
+          <span class="ftag ftag-blue">PDF attachment</span>
+          <span class="ftag ftag-blue">EN + GR for corporate</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot gold">+</div>
+      </div>
+      <div class="flow-content">
+        <strong>Website Inquiries — Instant Acknowledgement</strong>
+        <p>When a potential guest submits your WordPress contact form, they receive an automatic reply within seconds confirming their inquiry was received. Maria gets a formatted summary in her inbox — ready to reply. Every inquiry is logged to a Google Sheet automatically.</p>
+        <div class="flow-tags">
+          <span class="ftag ftag-green">Instant auto-reply</span>
+          <span class="ftag ftag-blue">Maria notified</span>
+          <span class="ftag ftag-blue">Logged to Google Sheets</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>Error Handling — Nothing Falls Through the Cracks</h2>
+
+  <div class="err-grid">
+    <div class="err-row">
+      <div class="err-icon">⚠</div>
+      <div class="err-content">
+        <strong>Email fails to send</strong>
+        <span>System retries automatically <span class="err-arrow">→</span> If retry fails: Maria + Nikos receive an alert with the guest's details and clear manual instructions</span>
+      </div>
+    </div>
+    <div class="err-row">
+      <div class="err-icon">⚠</div>
+      <div class="err-content">
+        <strong>Guest email missing from booking</strong>
+        <span>Immediate alert to Maria with booking ID <span class="err-arrow">→</span> Maria fixes the booking manually <span class="err-arrow">→</span> Flow can be re-triggered</span>
+      </div>
+    </div>
+    <div class="err-row">
+      <div class="err-icon">⚠</div>
+      <div class="err-content">
+        <strong>PDF invoice generation fails</strong>
+        <span>Retry once <span class="err-arrow">→</span> If still fails: plain-text invoice sent as fallback <span class="err-arrow">→</span> Alert Maria to send PDF version manually</span>
+      </div>
+    </div>
+    <div class="err-row">
+      <div class="err-icon">⚠</div>
+      <div class="err-content">
+        <strong>Duplicate booking detected (same booking ID)</strong>
+        <span>Automation skips it automatically — no double emails sent to guests under any circumstances</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>AI Automation Agency · Confidential</span>
+    <span>Santorini Breeze Hotel · April 2026</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════ PAGE 6 — OUTCOMES ══ -->
+<div class="page">
+  <div class="ph">
+    <span class="ph-doc">Santorini Breeze Hotel — Automation Report</span>
+    <span class="ph-tag">Phase 4 — Outcomes &amp; Requirements</span>
+  </div>
+
+  <div class="sec-num">06 — What Success Looks Like</div>
+  <h1>Your Operation <strong>After This Is Built</strong></h1>
+  <div class="h1-rule"></div>
+
+  <p>At the end of the first peak season after launch, this is what your operation looks like:</p>
+
+  <div class="success-grid">
+    <div class="success-item">
+      <span class="success-check">✓</span>
+      <span class="success-text">Maria sends <strong>zero</strong> manual confirmation or pre-arrival emails</span>
+    </div>
+    <div class="success-item">
+      <span class="success-check">✓</span>
+      <span class="success-text">Zero guests arrive in August without pre-arrival information</span>
+    </div>
+    <div class="success-item">
+      <span class="success-check">✓</span>
+      <span class="success-text">Every invoice is <strong>correct on the first send</strong> — right VAT, right dates</span>
+    </div>
+    <div class="success-item">
+      <span class="success-check">✓</span>
+      <span class="success-text">No more emergency calls from lost guests during check-in hours</span>
+    </div>
+    <div class="success-item">
+      <span class="success-check">✓</span>
+      <span class="success-text">Website inquiries acknowledged <strong>within seconds</strong>, every single time</span>
+    </div>
+    <div class="success-item">
+      <span class="success-check">✓</span>
+      <span class="success-text">Maria's comms workload reduced by <strong>~80%</strong> in peak season</span>
+    </div>
+  </div>
+
+  <h2>What This Automation Does NOT Do</h2>
+
+  <table class="tbl">
+    <thead><tr><th>Out of Scope</th><th>Reason</th><th>Path Forward</th></tr></thead>
+    <tbody>
+      <tr><td>Greek tax authority (myDATA) integration</td><td>Separate regulatory system requiring dedicated build</td><td>Recommended Phase 2</td></tr>
+      <tr><td>Airbnb in-app messaging</td><td>Airbnb's platform restricts external automation of their messaging</td><td>Platform limitation</td></tr>
+      <tr><td>Cancellation &amp; rebooking flows</td><td>Separate trigger and logic from confirmed bookings</td><td>Recommended Phase 3</td></tr>
+      <tr><td>Human judgment for disputes</td><td>Maria and Nikos remain in the loop for all exceptions</td><td>By design</td></tr>
+    </tbody>
+  </table>
+
+  <h2>What We Need From Nikos to Get Started</h2>
+
+  <ul class="needs-list">
+    <li><div class="needs-num">1</div><span><strong>Cloudbeds API key</strong> — Settings → API in Cloudbeds. We'll guide you through it. Takes 5 minutes.</span></li>
+    <li><div class="needs-num">2</div><span><strong>Gmail account access</strong> — Connected via Google OAuth in Make.com. No password is ever shared.</span></li>
+    <li><div class="needs-num">3</div><span><strong>Hotel logo file</strong> — PNG or SVG, transparent background. Goes on the invoice template.</span></li>
+    <li><div class="needs-num">4</div><span><strong>Invoice legal details</strong> — Hotel legal name, ΑΦΜ (VAT number), registered address for the invoice header.</span></li>
+    <li><div class="needs-num">5</div><span><strong>Email template approval</strong> — We draft both templates and show you before anything goes live. One round of feedback.</span></li>
+    <li><div class="needs-num">6</div><span><strong>Make.com account</strong> — Free to create at make.com. Free trial for the first 30 days. We'll walk you through it.</span></li>
+  </ul>
+
+  <div class="page-footer">
+    <span>AI Automation Agency · Confidential</span>
+    <span>Santorini Breeze Hotel · April 2026</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════ PAGE 7 — NEXT AUTOMATIONS ══ -->
+<div class="page">
+  <div class="ph">
+    <span class="ph-doc">Santorini Breeze Hotel — Automation Report</span>
+    <span class="ph-tag">Phase 5 — What to Automate Next</span>
+  </div>
+
+  <div class="sec-num">07 — The Road Ahead</div>
+  <h1>Three <strong>Follow-On Opportunities</strong></h1>
+  <div class="h1-rule"></div>
+
+  <p>Based on everything we learned, these are the highest-value automation opportunities to pursue once the booking communication flow is live and stable.</p>
+
+  <div class="next-card">
+    <div class="next-card-head low">
+      <div>
+        <div class="phase">Next · 1–2 months after launch</div>
+        <div class="title">1. Guest Review Request Flow</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:10px;letter-spacing:1px;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:4px;">Complexity</div>
+        <div style="font-size:20px;font-weight:700;color:white;">Low</div>
+      </div>
+    </div>
+    <div class="next-card-body">
+      <p>After checkout, most hotels lose the review opportunity because the request arrives too late, too early, or never at all. An automated review request fires 24 hours after checkout — personalised from Nikos, linking directly to Booking.com and Google review pages. A gentle follow-up fires 3 days later for guests who didn't open the first email.</p>
+      <p><strong>Why now:</strong> Uses the exact same checkout-day trigger already deployed. Zero new infrastructure. Industry data shows this increases review volume by 30–50% — directly lifting Booking.com ranking.</p>
+      <div class="next-meta">
+        <div class="next-meta-item"><div class="nm">Build Time</div><div class="nv">1–2 weeks</div></div>
+        <div class="next-meta-item"><div class="nm">New Tools</div><div class="nv">None</div></div>
+        <div class="next-meta-item"><div class="nm">Impact</div><div class="nv">+30–50% reviews</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-card">
+    <div class="next-card-head medium">
+      <div>
+        <div class="phase">Before next summer</div>
+        <div class="title">2. Cancellation &amp; Rebooking Flow</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:10px;letter-spacing:1px;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:4px;">Complexity</div>
+        <div style="font-size:20px;font-weight:700;color:white;">Medium</div>
+      </div>
+    </div>
+    <div class="next-card-body">
+      <p>When a guest cancels, the room sits empty unless someone acts fast. A cancellation in Cloudbeds triggers two flows simultaneously: a recovery email to the cancelled guest offering flexible rebooking, and an internal alert to Nikos with the room, dates, and availability to decide whether to push a last-minute deal.</p>
+      <p><strong>Why now:</strong> A single recovered room night in July or August is worth €200–400. Even a 10% recovery rate pays for this build many times over in the first summer.</p>
+      <div class="next-meta">
+        <div class="next-meta-item"><div class="nm">Build Time</div><div class="nv">3–4 weeks</div></div>
+        <div class="next-meta-item"><div class="nm">Potential Value</div><div class="nv">€200–400 / recovered night</div></div>
+        <div class="next-meta-item"><div class="nm">Impact</div><div class="nv">High in peak season</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-card">
+    <div class="next-card-head high">
+      <div>
+        <div class="phase">Before second season</div>
+        <div class="title">3. Seasonal Upsell &amp; Loyalty Flow</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:10px;letter-spacing:1px;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:4px;">Complexity</div>
+        <div style="font-size:20px;font-weight:700;color:white;">High</div>
+      </div>
+    </div>
+    <div class="next-card-body">
+      <p>Returning guests are the most valuable and least expensive to acquire — but most hotels treat them identically to first-timers. This flow recognises returning guests automatically, sends pre-season priority booking windows to past guests, and offers room upgrades to incoming guests 2 weeks before arrival.</p>
+      <p><strong>Why now:</strong> The guest data already exists in Cloudbeds. Early-season outreach can fill 10–20% of peak inventory before it hits booking platforms — at zero channel commission (typically 15–18% on Booking.com).</p>
+      <div class="next-meta">
+        <div class="next-meta-item"><div class="nm">Build Time</div><div class="nv">6–8 weeks</div></div>
+        <div class="next-meta-item"><div class="nm">Commission Saved</div><div class="nv">15–18% per direct booking</div></div>
+        <div class="next-meta-item"><div class="nm">New Data</div><div class="nv">Guest history from Cloudbeds</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>AI Automation Agency · Confidential</span>
+    <span>Santorini Breeze Hotel · April 2026</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════ PAGE 8 — TIMELINE & CLOSE ══ -->
+<div class="page">
+  <div class="ph">
+    <span class="ph-doc">Santorini Breeze Hotel — Automation Report</span>
+    <span class="ph-tag">Roadmap &amp; Next Steps</span>
+  </div>
+
+  <div class="sec-num">08 — The Plan</div>
+  <h1>Automation <strong>Roadmap</strong></h1>
+  <div class="h1-rule"></div>
+
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-phase">Now</div>
+        <div class="tl-dot current"></div>
+        <div class="tl-vline"></div>
+      </div>
+      <div class="tl-content">
+        <strong>Booking Communication Flow — Build &amp; Launch</strong>
+        <p>Confirmation + pre-arrival + PDF invoice + inquiry handling. €16/month. Returns €5,900/year. Ready to build on approval.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-phase">+1–2 mo</div>
+        <div class="tl-dot"></div>
+        <div class="tl-vline"></div>
+      </div>
+      <div class="tl-content">
+        <strong>Guest Review Request Flow</strong>
+        <p>Low complexity. Uses existing infrastructure. 1–2 weeks to build. Directly impacts Booking.com ranking.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-phase">Pre-Summer</div>
+        <div class="tl-dot"></div>
+        <div class="tl-vline"></div>
+      </div>
+      <div class="tl-content">
+        <strong>Cancellation &amp; Rebooking Flow</strong>
+        <p>Medium complexity. 3–4 weeks to build. Highest impact in peak season when recovered rooms are most valuable.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-phase">Season 2</div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-content">
+        <strong>Seasonal Upsell &amp; Loyalty Flow</strong>
+        <p>High complexity. 6–8 weeks to build. Turns a transactional hotel into a relationship-driven one with zero additional acquisition cost.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>What Happens After You Approve</h2>
+
+  <table class="tbl">
+    <thead><tr><th>Step</th><th>Action</th><th>Who</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1</strong></td><td>Credential collection — Cloudbeds API key, Gmail OAuth, Make.com account setup</td><td>Nikos + Consultant · ~30 min</td></tr>
+      <tr><td><strong>2</strong></td><td>Email template drafts reviewed and approved by Nikos and Maria</td><td>One round of feedback</td></tr>
+      <tr><td><strong>3</strong></td><td>Full automation built and tested — happy path, late bookings, corporate invoices, all error paths</td><td>Consultant · 1–2 weeks</td></tr>
+      <tr><td><strong>4</strong></td><td>Handover — Maria and Nikos walked through the system; scenario turned on</td><td>Consultant + Nikos + Maria</td></tr>
+      <tr><td><strong>5</strong></td><td>30-day check-in — volume review, error audit, team feedback, seasonal tuning</td><td>One month after go-live</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-dark" style="margin-top:44px;">
+    <div class="cl">The question for Nikos</div>
+    <div style="font-size:22px;color:white;margin-top:12px;line-height:1.5;">
+      Does this report capture the real problem you're facing?
+    </div>
+    <div style="font-size:18px;color:#e5a032;margin-top:10px;font-style:italic;">
+      Once you approve, we build.
+    </div>
+  </div>
+
+  <div class="page-footer" style="margin-top:32px;">
+    <span>AI Automation Agency · Confidential · April 2026</span>
+    <span>Santorini Breeze Hotel · Nikos Papadopoulos</span>
+  </div>
+</div>
+
+</body>
+</html>
