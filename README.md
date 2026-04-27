@@ -2,6 +2,10 @@
 
 > A Claude Code skill that positions Claude as a senior automation consultant — structured thinking, real deliverables, and a methodology that mirrors how professional agencies actually operate.
 
+## Demo
+
+> This is a Claude Code skill — no GIF needed. Install it and say "start agency session" to see it in action. See [Setup](#setup).
+
 ## What This Does
 
 Most people use Claude for ad-hoc automation advice. This skill changes that. It loads a complete consulting framework into Claude Code — a six-phase workflow from problem diagnosis through client delivery — so you get structured, professional output instead of generic suggestions.
